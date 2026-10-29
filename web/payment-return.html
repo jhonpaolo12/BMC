@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>PlainTees Payment</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #111111;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 36px 28px;
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid #e7e7e7;
+      border-radius: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+    }
+
+    .icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #f0f0f0;
+      font-size: 38px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      margin: 0;
+      color: #666666;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .order {
+      margin: 22px 0;
+      padding: 14px 16px;
+      text-align: left;
+      background: #fafafa;
+      border: 1px solid #eeeeee;
+      border-radius: 12px;
+    }
+
+    .order-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888888;
+    }
+
+    .order-value {
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .button {
+      display: block;
+      margin-top: 22px;
+      padding: 16px 20px;
+      background: #111111;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #999999;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="icon">✓</div>
+
+    <h1>Payment Complete</h1>
+
+    <p>
+      Thank you for shopping with PlainTees.
+      Returning you to the app...
+    </p>
+
+    <div class="order" id="orderBox" hidden>
+      <div class="order-label">Order ID</div>
+      <div class="order-value" id="orderValue"></div>
+    </div>
+
+    <a class="button" id="returnButton" href="plaintees://payment-return">
+      Return to PlainTees
+    </a>
+
+    <p class="note">
+      If the app does not open automatically, tap the button above.
+    </p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const orderId =
+      params.get("order_id") ||
+      params.get("orderId") ||
+      "";
+
+    let deepLink = "plaintees://payment-return";
+
+    if (orderId) {
+      deepLink += "?order_id=" + encodeURIComponent(orderId);
+
+      const orderBox = document.getElementById("orderBox");
+      const orderValue = document.getElementById("orderValue");
+
+      orderValue.textContent = orderId;
+      orderBox.hidden = false;
+    }
+
+    document.getElementById("returnButton").href = deepLink;
+
+    setTimeout(function () {
+      window.location.href = deepLink;
+    }, 1200);
+  </script>
+</body>
+</html>

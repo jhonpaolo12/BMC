@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "213397434522",
+    "project_id": "plaintees-e-commerce",
+    "storage_bucket": "plaintees-e-commerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213397434522:android:2afadcca69b405cc59af23",
+        "android_client_info": {
+          "package_name": "com.example.plain_tees"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNtGidxCZGAU4PTgKJFJEMhCw4nlkbPD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
